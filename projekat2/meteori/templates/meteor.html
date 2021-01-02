@@ -1,0 +1,33 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>
+                ID: {{ meteor.id }}
+            </h1>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>mesto: {{ meteor.mesto }}</p>
+                <p>datum: {{ meteor.datum }}</p>
+                <p>vreme: {{ meteor.vreme }}</p>
+                <p>magnituda: {{ meteor.magnituda }}</p>
+                <p>datum prijavljivanja: {{ meteor.dodat }}</p>
+
+                <footer class="blockquote-footer">
+                    Author:
+                    <cite title="Source Title">
+                        {{ meteor.posmatrac.username }}
+                    </cite>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <div>
+        <br>
+        <a href="{% url 'met_app:all_meteors'%}">Back to home.</a>
+    </div>
+
+{% endblock %}

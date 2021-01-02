@@ -10,7 +10,8 @@ def all_meteors(req):
 
 @login_required
 def my_meteors(req):
-    return render(req,'my_meteors.html')
+    tmp = Meteor.objects.all()
+    return render(req,'my_meteors.html', {'meteors': tmp})
 
 @login_required
 def add_meteor(req):
@@ -19,3 +20,9 @@ def add_meteor(req):
 
 def singin(req):
     return render(req, 'singin.html')
+
+@login_required
+def meteor(req, id):
+    tmp = get_object_or_404(Meteor, id=id)
+    txt = ("m. id: " + str(tmp.id))
+    return render(req, 'meteor.html', {'meteor': tmp, 'page_title': txt})

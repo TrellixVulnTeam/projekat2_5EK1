@@ -8,4 +8,5 @@ urlpatterns = [
     path('my_meteors/', views.my_meteors, name='my_meteors'),
     path('add_meteor/', views.add_meteor, name='add_meteor'),
     path('singin/', views.singin, name='singin'),
+    path('meteor/<int:id>', views.meteor, name='meteor'),
 ]

@@ -5,13 +5,32 @@
 {% endblock %}
 
 {%  block content %}
-    <p>SVI </p>
-    <div class="list-group">
-        {% for meteor in meteors %}
-            <a class="list-group-item list-group-item-action">
-                {{ meteor.mesto }}
-            </a>
-        {% endfor %}
+    <h2>ALL METEORS </h2>
+    <br>
+
+    <div>
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Mesto</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Magnituda</th>
+                <th scope="col">Posmatrač</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for meteor in meteors %}
+                <tr style="transform: rotate(0);">
+                    <th scope="row"><a href="{% url 'met_app:meteor' meteor.id %}" class="stretched-link">{{ meteor.id }}</a></th>
+                    <td>{{ meteor.mesto }}</td>
+                    <td>{{ meteor.datum }}</td>
+                    <td>{{ meteor.magnituda }}</td>
+                    <td>{{ meteor.posmatrac.username }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
     </div>
 
 {% endblock %}
