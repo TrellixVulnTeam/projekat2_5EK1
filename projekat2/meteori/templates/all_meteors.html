@@ -1,8 +1,18 @@
 {%  extends 'master.html' %}
 
+{% block title %}
+    All meteors (home)
+{% endblock %}
 
 {%  block content %}
     <p>SVI </p>
+    <div class="list-group">
+        {% for meteor in meteors %}
+            <a class="list-group-item list-group-item-action">
+                {{ meteor.mesto }}
+            </a>
+        {% endfor %}
+    </div>
 
 {% endblock %}
 

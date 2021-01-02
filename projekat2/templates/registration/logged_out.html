@@ -6,6 +6,12 @@
 
 {%  block content %}
     <p>Logged out!</p>
-    <a href="{% url 'login'%}">Click here to login again.</a>
+    <div>
+        <a href="{% url 'login'%}">Click here to login again.</a>
+    </div>
+    <div>
+        <a href="{% url 'met_app:all_meteors'%}">Back to home.</a>
+    </div>
+
 {%  endblock %}
 

@@ -4,17 +4,18 @@ from .models import Meteor
 
 
 def all_meteors(req):
-    return render(req, 'all_meteors.html')
+    tmp = Meteor.objects.all()
+    return render(req, 'all_meteors.html', {'meteors': tmp})
 
 
 @login_required
 def my_meteors(req):
-    return render(req,'kita.html')
+    return render(req,'my_meteors.html')
 
-
+@login_required
 def add_meteor(req):
-    return render(req, 'kita.html')
+    return render(req, 'add_meteors.html')
 
 
 def singin(req):
-    return render(req, 'kita.html')
+    return render(req, 'singin.html')
