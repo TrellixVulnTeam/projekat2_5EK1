@@ -1,10 +1,84 @@
 {%  extends 'master.html' %}
 
 {% block title %}
-    Add meteors
+    Add meteor
 {% endblock %}
 
 {%  block content %}
-    <p> DODAJ </p>
+    <h2> ADD METEOR </h2>
+    <br>
+
+    <form method="post" action="{% url 'met_app:add_meteor' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>{{ form.datum.label_tag }}</label>
+            <input type="date" required class="form-control" id="{{ form.datum.id_for_label }}" name="{{ form.datum.name }}">
+            {% if form.datum.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.datum.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.vreme.id_for_label }}">{{ form.vreme.label_tag }}</label>
+            <input type="time" required class="form-control" id="{{ form.vreme.id_for_label }}" name="{{ form.vreme.name }}">
+            {% if form.vreme.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.vreme.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.mesto.id_for_label }}">{{ form.mesto.label_tag }}</label>
+            <input type="text" required maxlength="30" class="form-control" id="{{ form.mesto.id_for_label }}" name="{{ form.mesto.name }}">
+            {% if form.mesto.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.mesto.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.magnituda.id_for_label }}">{{ form.magnituda.label_tag }}</label>
+            <select required class="form-control" id="{{ form.magnituda.id_for_label }}" name="{{ form.magnituda.name }}">
+                <option value="-10">-10</option><option value="-9">-9</option><option value="-8">-8</option><option value="-7">-7</option>
+                <option value="-6">-6</option><option value="-5">-5</option><option value="-4">-4</option><option value="-3">-3</option>
+                <option value="-2">-2</option><option value="-1">-1</option><option value="0">0</option><option value="1">1</option>
+                <option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+
+
+
+
+
+            </select>
+            {% if form.magnituda.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.magnituda.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+
+
+        <input type="submit" class="btn btn-primary btn-lg" value="Add"/>
+    </form>
 
 {% endblock %}
