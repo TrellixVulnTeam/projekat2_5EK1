@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Meteor
@@ -31,7 +33,19 @@ def add_meteor(req):
 
 
 def singin(req):
-    return render(req, 'singin.html')
+    if req.method == 'POST':
+        form = UserCreationForm(req.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(req, user)
+            tmp = Meteor.objects.all()
+            return render(req, 'all_meteors.html', {'meteors': tmp})
+    else:
+        form = UserCreationForm()
+    return render(req, 'singin.html', {'form': form})
 
 @login_required
 def meteor(req, id):

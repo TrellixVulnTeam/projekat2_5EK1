@@ -5,6 +5,13 @@
 {% endblock %}
 
 {%  block content %}
-    <p>SINGIN </p>
+    <h2> SINGIN </h2>
+    <br>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info" style=" width: 260px">Sing in</button>
+  </form>
+
 
 {% endblock %}
