@@ -59,3 +59,10 @@ def edit_meteor(req, id):
         tmp = get_object_or_404(Meteor, id=id)
         forma = MeteorForm(instance=tmp)
         return render(req, 'edit_meteor.html', {'form': forma, 'id': id})
+
+@login_required
+def del_meteor(req, id):
+    m = get_object_or_404(Meteor, id=id)
+    m.delete()
+    tmp = Meteor.objects.filter(posmatrac_id=req.user.id)
+    return render(req, 'my_meteors.html', {'meteors': tmp})

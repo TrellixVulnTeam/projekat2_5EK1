@@ -10,4 +10,5 @@ urlpatterns = [
     path('singin/', views.singin, name='singin'),
     path('meteor/<int:id>', views.meteor, name='meteor'),
     path('edit_meteor/<int:id>', views.edit_meteor, name='edit_meteor'),
+    path('del_meteor/<int:id>', views.del_meteor, name='del_meteor'),
 ]
