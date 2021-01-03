@@ -25,16 +25,16 @@
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}"/>
 
-        <div class="form-group">
-            {{ form.username.label_tag }}
+        <p>
+            {{ form.username.label_tag }}<br>
             {{ form.username }}
-        </div>
+        </p>
 
-        <div class="form-group">
-            {{ form.password.label_tag }}
+        <p>
+            {{ form.password.label_tag }}<br>
             {{ form.password }}
-        </div>
+        </p>
 
-        <button type="submit" class="btn btn-info" style=" width: 260px">Login</button>
+        <button type="submit" class="btn btn-info" style=" width: 180px">Login</button>
     </form>
 {% endblock %}

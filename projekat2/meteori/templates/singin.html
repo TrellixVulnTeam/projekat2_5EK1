@@ -9,8 +9,18 @@
     <br>
     <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-info" style=" width: 260px">Sing in</button>
+    {% for field in form %}
+
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+
+        {% for error in field.errors %}
+          <p style="color: #ff0000">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit" class="btn btn-info" style=" width: 180px">Sing in</button>
   </form>
 
 

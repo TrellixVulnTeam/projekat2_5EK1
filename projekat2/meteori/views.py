@@ -16,6 +16,7 @@ def my_meteors(req):
     tmp = Meteor.objects.filter(posmatrac_id = req.user.id)
     return render(req, 'my_meteors.html', {'meteors': tmp})
 
+
 @login_required
 def add_meteor(req):
     if req.method == 'POST':
@@ -24,7 +25,7 @@ def add_meteor(req):
         if forma.is_valid():
             m = Meteor(datum=forma.cleaned_data['datum'], vreme=forma.cleaned_data['vreme'], mesto=forma.cleaned_data['mesto'], magnituda=forma.cleaned_data['magnituda'], posmatrac=req.user)
             m.save()
-            return redirect('met_app:all_meteors')
+            return render(req, 's_add.html')
         else:
             return render(req, 'add_meteors.html', {'form': forma})
     else:
@@ -47,11 +48,13 @@ def singin(req):
         form = UserCreationForm()
     return render(req, 'singin.html', {'form': form})
 
+
 @login_required
 def meteor(req, id):
     tmp = get_object_or_404(Meteor, id=id)
     txt = ("m. id: " + str(tmp.id))
     return render(req, 'meteor.html', {'meteor': tmp, 'page_title': txt})
+
 
 @login_required
 def edit_meteor(req, id):
@@ -66,7 +69,7 @@ def edit_meteor(req, id):
             m.magnituda = forma.cleaned_data['magnituda']
             m.posmatrac = req.user
             m.save()
-            return redirect('met_app:my_meteors')
+            return render(req, 's_edit.html')
         else:
             return render(req, 'edit_meteor.html', {'form': forma, 'id': id})
     else:
@@ -74,9 +77,9 @@ def edit_meteor(req, id):
         forma = MeteorForm(instance=tmp)
         return render(req, 'edit_meteor.html', {'form': forma, 'id': id})
 
+
 @login_required
 def del_meteor(req, id):
     m = get_object_or_404(Meteor, id=id)
     m.delete()
-    tmp = Meteor.objects.filter(posmatrac_id=req.user.id)
-    return render(req, 'my_meteors.html', {'meteors': tmp})
+    return render(req, 's_del.html')

@@ -1,16 +1,17 @@
 {%  extends 'master.html' %}
 
 {% block title %}
-    Good by!
+    Edit successfully!
 {% endblock %}
 
 {%  block content %}
-    <p>Logged out!</p>
+    <h3> Meteor successfully edited! </h3>
+    <br>
     <div>
-        <a href="{% url 'login'%}">Login again.</a>
+        <a href="{% url 'met_app:my_meteors'%}">Back to my meteors page.</a>
     </div>
     <div>
         <a href="{% url 'met_app:all_meteors'%}">Back to home page.</a>
     </div>
-{%  endblock %}
 
+{% endblock %}

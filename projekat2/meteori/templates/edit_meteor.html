@@ -72,7 +72,14 @@ from datetime import *
             {% endif %}
         </div>
 
-        <input type="submit" class="btn btn-primary btn-lg" value="Save" style=" width: 370px; margin-top: 30px"/>
+        <input type="submit" class="btn btn-info btn-lg" value="Save" style=" width: 370px; margin-top: 20px"/>
+
+        <div>
+            <a  href="{% url 'met_app:my_meteors' %}">
+                <input  class="btn btn-danger btn-lg" value="Cancel" style=" width: 370px; margin-top: 20px"/>
+            </a>
+        </div>
+
 
     </form>
 
