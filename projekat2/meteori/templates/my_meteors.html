@@ -18,6 +18,7 @@
                 <th scope="col">Vreme</th>
                 <th scope="col">Magnituda</th>
                 <th scope="col">Dodat</th>
+                <th scope="col">Akcije</th>
             </tr>
           </thead>
           <tbody>
@@ -29,6 +30,15 @@
                     <td>{{ meteor.vreme }}</td>
                     <td>{{ meteor.magnituda }}</td>
                     <td>{{ meteor.dodat }}</td>
+                    <td>
+                        <a  href="{% url 'met_app:edit_meteor' meteor.id %}">
+                            <span class="badge badge-info">Edit</span>
+                        </a>
+                        <a  href="{% url 'met_app:singin' %}">
+                            <span class="badge badge-danger">Delete</span>
+                        </a>
+                    </td>
+
                 </tr>
             {% endfor %}
           </tbody>

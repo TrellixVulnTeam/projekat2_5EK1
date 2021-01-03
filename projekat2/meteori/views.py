@@ -38,3 +38,24 @@ def meteor(req, id):
     tmp = get_object_or_404(Meteor, id=id)
     txt = ("m. id: " + str(tmp.id))
     return render(req, 'meteor.html', {'meteor': tmp, 'page_title': txt})
+
+@login_required
+def edit_meteor(req, id):
+    if req.method == 'POST':
+        forma = MeteorForm(req.POST)
+
+        if forma.is_valid():
+            m = Meteor.objects.get(id=id)
+            m.datum = forma.cleaned_data['datum']
+            m.vreme = forma.cleaned_data['vreme']
+            m.mesto = forma.cleaned_data['mesto']
+            m.magnituda = forma.cleaned_data['magnituda']
+            m.posmatrac = req.user
+            m.save()
+            return redirect('met_app:my_meteors')
+        else:
+            return render(req, 'edit_meteor.html', {'form': forma, 'id': id})
+    else:
+        tmp = get_object_or_404(Meteor, id=id)
+        forma = MeteorForm(instance=tmp)
+        return render(req, 'edit_meteor.html', {'form': forma, 'id': id})

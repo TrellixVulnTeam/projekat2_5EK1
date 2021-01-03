@@ -9,4 +9,5 @@ urlpatterns = [
     path('add_meteor/', views.add_meteor, name='add_meteor'),
     path('singin/', views.singin, name='singin'),
     path('meteor/<int:id>', views.meteor, name='meteor'),
+    path('edit_meteor/<int:id>', views.edit_meteor, name='edit_meteor'),
 ]
