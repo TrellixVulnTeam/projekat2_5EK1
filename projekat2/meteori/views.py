@@ -63,12 +63,13 @@ def edit_meteor(req, id):
 
         if forma.is_valid():
             m = Meteor.objects.get(id=id)
-            m.datum = forma.cleaned_data['datum']
-            m.vreme = forma.cleaned_data['vreme']
-            m.mesto = forma.cleaned_data['mesto']
-            m.magnituda = forma.cleaned_data['magnituda']
-            m.posmatrac = req.user
-            m.save()
+            if req.user == m.posmatrac:
+                m.datum = forma.cleaned_data['datum']
+                m.vreme = forma.cleaned_data['vreme']
+                m.mesto = forma.cleaned_data['mesto']
+                m.magnituda = forma.cleaned_data['magnituda']
+                m.posmatrac = req.user
+                m.save()
             return render(req, 's_edit.html')
         else:
             return render(req, 'edit_meteor.html', {'form': forma, 'id': id})
